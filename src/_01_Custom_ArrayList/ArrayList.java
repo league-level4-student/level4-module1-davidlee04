@@ -14,36 +14,56 @@ public class ArrayList <T>{
 	}
 	
 	public void add(T val) {
-		int temp = array.length;
-		T[] array2 = (T[])new Object[temp+1];
+		//int temp = array.length;
+		T[] array2 = (T[])new Object[array.length+1];
+		for (int i = 0; i < array.length; i++) {
+			array2[i] = array[i];
+		}
 		array = array2;
-		array[temp] = val;
+		array[array.length-1] = val;
+		//System.out.println(array.length);
 	}
 	
 	public void insert(int loc, T val) throws IndexOutOfBoundsException {
-		int temp = array.length;
-		T[] array2 = (T[])new Object[temp+1];
-		if(loc == 0) {
-			array2[0] = val;
-			for (int i = 1; i < array2.length; i++) {
-				array2[i] = array[i-1];
-			}
-			array = array2;
-		}else if(loc != 0 && loc != array.length-1) {
-			
+		T[] array2 = (T[])new Object[array.length+1];
+		for (int i = 0; i < loc; i++) {
+			array2[i] = array[i];
 		}
+		array2[loc] = val;
+		for (int i = loc+1; i < array2.length; i++) {
+			array2[i] = array[i-1];
+		}
+		array = array2;
 	}
 	
 	public void set(int loc, T val) throws IndexOutOfBoundsException {
-		
+		array[loc] = val;
 	}
 	
 	public void remove(int loc) throws IndexOutOfBoundsException {
-		
+		T[] array2 = (T[])new Object[array.length-1];
+		for (int i = 0; i < loc; i++) {
+			array2[i] = array[i];
+		}
+		for (int i = loc+1; i < array.length; i++) {
+			array2[i-1] = array[i];
+		}
+		array = array2;
 	}
 	
 	public boolean contains(T val) {
-		
-		return false;
+		int count = 0;
+		for (int i = 0; i < array.length; i++) {
+			if(array[i] == val) {
+				return true;
+			} else { 
+				count++;
+			}
+		}
+		if(count == array.length) {
+			return false;
+		} else { 
+			return true;
+		}
 	}
 }

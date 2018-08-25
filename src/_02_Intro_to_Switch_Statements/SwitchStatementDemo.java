@@ -38,7 +38,7 @@ public class SwitchStatementDemo {
 				break;
 			default: 
 				System.out.println("Something went wrong :(");
-				break;
+				
 			}
 		}
 		
